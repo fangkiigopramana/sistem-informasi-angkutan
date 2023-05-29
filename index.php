@@ -1,3 +1,9 @@
+<?php
+  include_once 'database/config.php';
+  $data_angkutan = mysqli_query($mysqli, "SELECT * FROM angkutan_tb"); 
+  $data_rute = mysqli_query($mysqli, "SELECT * FROM rute_tb"); 
+  $data_admin = mysqli_query($mysqli, "SELECT * FROM admin_tb"); 
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -42,7 +48,7 @@
                   <i class="fa-solid fa-car"></i>
                 </div>
                 <div class="ps-3">
-                  <h6>145 <span class="text-muted small pt-2" style="font-size: 20px;">angkutan</span></h6>
+                  <h6><?php echo $data_angkutan->num_rows ?> <span class="text-muted small pt-2" style="font-size: 20px;">angkutan</span></h6>
 
                 </div>
               </div>
@@ -64,7 +70,7 @@
                   <i class="fa-solid fa-route"></i>
                 </div>
                 <div class="ps-3">
-                  <h6>15 <span class="text-muted small pt-2" style="font-size: 20px;">rute</span></h6>
+                  <h6><?php echo $data_rute->num_rows ?> <span class="text-muted small pt-2" style="font-size: 20px;">rute</span></h6>
 
                 </div>
               </div>
@@ -86,7 +92,7 @@
                   <i class="fa-solid fa-user text-warning"></i>
                 </div>
                 <div class="ps-3">
-                  <h6>3 <span class="text-muted small pt-2" style="font-size: 20px;">akun</span></h6>
+                  <h6><?php echo $data_admin->num_rows ?> <span class="text-muted small pt-2" style="font-size: 20px;">akun</span></h6>
 
                 </div>
               </div>

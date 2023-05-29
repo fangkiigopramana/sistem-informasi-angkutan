@@ -1,3 +1,7 @@
+<?php
+  include_once 'database/config.php';
+ ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,7 +26,7 @@
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
-          <li class="breadcrumb-item">Daftar Angkutan</li>
+          <li class="breadcrumb-item">Daftar Rute Angkutan</li>
         </ol>
       </nav>
     </div>
@@ -35,8 +39,6 @@
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Berikut ini daftar rute yang tersedia :</h5> 
-              <!-- <button type="button" class="btn btn-primary">Primary</button> -->
-              <!-- <button type="button" class="btn btn-primary">Primary</button>  -->
               <!-- Modal Dialog Scrollable -->
               <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalDialogScrollable">
                 Tambah data
@@ -97,40 +99,21 @@
                     <th scope="col">No</th>
                     <th scope="col">Asal</th>
                     <th scope="col">Tujuan</th>
-                    <th scope="col">Nama Bus</th>
-                    <th scope="col">Kapasitas</th>
-                    <th scope="col">Harga Tiket</th>
                     <th scope="col">Jarak Tempuh</th>
                   </tr>
                 </thead>
                 <tbody>
+                <?php 
+                  $no = 1;
+                  while($res = mysqli_fetch_array($data_rute)) { ?>
                   <tr>
-                    <th scope="row">1</th>
-                    <td>Jakarta - Terminal Pulogebang</td>
-                    <td>Bogor - Terminal Baranangsiang</td>
-                    <td>Anjasmara 345</td>
-                    <td>450 Penumpang</td>
-                    <td>Rp 125.000</td>
-                    <td>234 KM</td>
+                    <th scope="row"><?php echo $no ?></th>
+                    <td><?php echo $res["asal"]?></td>
+                    <td><?php echo $res["tujuan"] ?></td>
+                    <td><?php echo $res["jarak_tempuh"] ?> KM</td>
                   </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Jakarta - Terminal Pulogebang</td>
-                    <td>Bogor - Terminal Baranangsiang</td>
-                    <td>Anjasmara 345</td>
-                    <td>450 Penumpang</td>
-                    <td>Rp 125.000</td>
-                    <td>234 KM</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Jakarta - Terminal Pulogebang</td>
-                    <td>Bogor - Terminal Baranangsiang</td>
-                    <td>Anjasmara 345</td>
-                    <td>450 Penumpang</td>
-                    <td>Rp 125.000</td>
-                    <td>234 KM</td>
-                  </tr>
+                  <?php } ?>
+                  
                 </tbody>
               </table>
               <!-- End Table with stripped rows -->

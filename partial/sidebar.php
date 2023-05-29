@@ -14,17 +14,17 @@
         <a class="nav-link" href="daftar-angkutan.php">
           <i class="fa-solid fa-car"></i><span>Daftar Angkutan</span></i>
         </a>
-      </li><!-- End Components Nav -->
+      </li><!-- End daftar angkutan -->
 
       <li class="nav-item">
         <a class="nav-link" href="daftar-rute.php">
           <i class="fa-solid fa-route"></i><span>Daftar Rute Angkutan</span></i>
         </a>
-      </li><!-- End Forms Nav -->
+      </li><!-- End rute angkutan -->
 
       <li class="nav-item">
         <a class="nav-link" href="daftar-user.php">
-          <i class="fa-solid fa-user"></i><span>Data user admin</span></i>
+          <i class="fa-solid fa-user"></i><span>Data Admin</span></i>
         </a>
       </li><!-- End Tables Nav -->
 

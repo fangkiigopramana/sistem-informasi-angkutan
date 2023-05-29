@@ -1,3 +1,8 @@
+<?php 
+    include 'database/config.php';
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,11 +23,11 @@
 
     <!-- Start Page Title -->
     <div class="pagetitle">
-      <h1>Daftar User</h1>
+      <h1>Daftar Admin</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
-          <li class="breadcrumb-item">Daftar Angkutan</li>
+          <li class="breadcrumb-item">Daftar Admin</li>
         </ol>
       </nav>
     </div>
@@ -101,30 +106,16 @@
                   </tr>
                 </thead>
                 <tbody>
+                  <?php 
+                  $no = 1;
+                  while($res = mysqli_fetch_array($data_admin)) { ?>
                   <tr>
-                    <th scope="row">1</th>
-                    <td>Brandon Jacob</td>
-                    <td>brandonjacob@gmail.com</td>
-                    <td>*****</td>
+                    <th scope="row"><?php echo $no ?></th>
+                    <td><?php echo $res["nama"] ?></td>
+                    <td><?php echo $res["email"] ?></td>
+                    <td><?php echo $res["password"] ?></td>
                   </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Brandon Jacob</td>
-                    <td>brandonjacob@gmail.com</td>
-                    <td>*****</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Brandon Jacob</td>
-                    <td>brandonjacob@gmail.com</td>
-                    <td>*****</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">4</th>
-                    <td>Brandon Jacob</td>
-                    <td>brandonjacob@gmail.com</td>
-                    <td>*****</td>
-                  </tr>
+                  <?php $no++; }?>
                 </tbody>
               </table>
               <!-- End Table with stripped rows -->

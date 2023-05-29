@@ -1,7 +1,6 @@
-<?php 
-    include_once("database/config.php");
-    $result = mysqli_query($mysqli, "SELECT * FROM angkutan"); // using mysqli_query instead
-?>
+<?php
+  include_once 'database/config.php';
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -74,8 +73,8 @@
                                 <input type="text" class="form-control" placeholder="Ketik di sini..." id="inputPassword4">
                               </div>
                               <div class="col-12">
-                                <label for="inputAddress" class="form-label">Jarak Tempuh</label>
-                                <input type="number" class="form-control" id="inputAddress" placeholder="Ketik di sini... (KM)">
+                                <label for="inputAddress" class="form-label">Waktu berangkat</label>
+                                <input type="date" class="form-control" id="inputAddress" placeholder="Ketik di sini... (KM)">
                               </div>
                               <div class="col-12">
                                 <label for="inputAddress" class="form-label">Bahan Bakar</label>
@@ -111,44 +110,27 @@
                     <th scope="col">No</th>
                     <th scope="col">Nama Angkutan</th>
                     <th scope="col">Merk</th>
-                    <th scope="col">No. Plat</th>
-                    <th scope="col">Jarak Tempuh</th>
-                    <th scope="col">Bahan Bakar</th>
+                    <th scope="col">No. Kendaraan</th>
+                    <th scope="col">Rute</th>
+                    <th scope="col">Kapasitas</th>
+                    <th scope="col">Waktu berangkat</th>
                   </tr>
                 </thead>
                 <tbody>
+
+                  <?php 
+                  $no = 1;
+                  while($res = mysqli_fetch_array($data_angkutan)) { ?>
                   <tr>
-                    <th scope="row">1</th>
-                    <td>Angkutan 1</td>
-                    <td>Mitsubhisi</td>
-                    <td>G 4564 AB</td>
-                    <td>2982982 KM</td>
-                    <td>Pertamax</td>
+                    <th scope="row"><?php echo $no ?></th>
+                    <td><?php echo $res["nama_angkutan"] ?></td>
+                    <td><?php echo $res["no_kendaraan"] ?></td>
+                    <td><?php echo $res["merk"] ?></td>
+                    <td><?php echo $res["rute"] ?></td>
+                    <td><?php echo $res["kapasitas"]?> Penumpang</td>
+                    <td><?php echo $res["waktu_berangkat"] ?></td>
                   </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Angkutan 1</td>
-                    <td>Mitsubhisi</td>
-                    <td>G 4564 AB</td>
-                    <td>2982982 KM</td>
-                    <td>Pertamax</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Angkutan 1</td>
-                    <td>Mitsubhisi</td>
-                    <td>G 4564 AB</td>
-                    <td>2982982 KM</td>
-                    <td>Pertamax</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">4</th>
-                    <td>Angkutan 1</td>
-                    <td>Mitsubhisi</td>
-                    <td>G 4564 AB</td>
-                    <td>2982982 KM</td>
-                    <td>Pertamax</td>
-                  </tr>
+                  <?php $no++;} ?>
                 </tbody>
               </table>
               <!-- End Table with stripped rows -->
