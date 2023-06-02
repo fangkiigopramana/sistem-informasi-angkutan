@@ -2,7 +2,7 @@
   <header id="header" class="header fixed-top d-flex align-items-center" style="background-color: #219ebc;">
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href="index.html" class="logo d-flex align-items-center">
+      <a href="dashboard.php" class="logo d-flex align-items-center">
         <span class="d-none d-lg-block">SI-Angkutan</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
@@ -29,7 +29,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="login.php">
+              <a class="dropdown-item d-flex align-items-center" href="index.php">
                 <i class="bi bi-box-arrow-right"></i>
                 <span>Sign Out</span>
               </a>

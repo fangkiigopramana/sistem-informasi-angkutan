@@ -25,7 +25,7 @@
       <h1>Daftar Angkutan</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
+          <li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
           <li class="breadcrumb-item">Daftar Angkutan</li>
         </ol>
       </nav>
@@ -59,34 +59,38 @@
                           <div class="card-body">
                             
                             <!-- Vertical Form -->
-                            <form class="row g-3">
+                            <form class="row g-3" method="post" action="./kelola/angkutan/add.php">
                               <div class="col-12">
-                                <label for="inputNanme4" class="form-label">Nama Angkutan</label>
-                                <input type="text" class="form-control" placeholder="Ketik di sini..." id="inputNanme4">
+                                <label for="nama_angkutan" class="form-label">Nama Angkutan</label>
+                                <input type="text" class="form-control" name="nama_angkutan" placeholder="Ketik di sini..." required>
                               </div>
                               <div class="col-12">
-                                <label for="inputEmail4" class="form-label">Merk</label>
-                                <input type="text" class="form-control" placeholder="Ketik di sini..." id="inputEmail4">
+                                <label for="merk" class="form-label">Merk</label>
+                                <input type="text" class="form-control" name="merk" placeholder="Ketik di sini..." required>
                               </div>
                               <div class="col-12">
-                                <label for="inputPassword4" class="form-label">No. Plat</label>
-                                <input type="text" class="form-control" placeholder="Ketik di sini..." id="inputPassword4">
+                                <label for="no_kendaraan" class="form-label">No. Kendaraan</label>
+                                <input type="text" class="form-control" name="no_kendaraan" placeholder="Ketik di sini..." required>
                               </div>
                               <div class="col-12">
-                                <label for="inputAddress" class="form-label">Waktu berangkat</label>
-                                <input type="date" class="form-control" id="inputAddress" placeholder="Ketik di sini... (KM)">
-                              </div>
-                              <div class="col-12">
-                                <label for="inputAddress" class="form-label">Bahan Bakar</label>
-                                <select class="form-select" aria-label="Default select example">
+                                <label for="rute" class="form-label">Rute</label>
+                                <select class="form-select" name="rute" aria-label="Default select example" required>
+                                  <?php foreach ($data_rute as $rute) {  ?>
                                   <!-- <option selected value="">Pilih bahan bakar</option> -->
-                                  <option  selected value="1">Pertalite</option>
-                                  <option value="2">Pertamax</option>
-                                  <option value="3">Solar</option>
+                                  <option value=<?php echo $rute["id_rute"] ?>><?php echo $rute["asal"] . " - " . $rute["tujuan"] ?></option>
+                                  <?php } ?>
                                 </select>
                               </div>
+                              <div class="col-12">
+                                <label for="kapasitas" class="form-label">Kapasitas Penumpang</label>
+                                <input type="number" step="any" class="form-control" name="kapasitas" required>
+                              </div>
+                              <div class="col-12">
+                                <label for="tanggal_berangkat" class="form-label">Tanggal berangkat</label>
+                                <input type="date" class="form-control" name="tanggal_berangkat" required>
+                              </div>
                               <div class="text-left">
-                                <button type="submit" class="btn btn-success">Submit</button>
+                                <button type="submit" name="send" class="btn btn-success">Submit</button>
                               </div>
                             </form><!-- Vertical Form -->
 
@@ -109,8 +113,8 @@
                   <tr>
                     <th scope="col">No</th>
                     <th scope="col">Nama Angkutan</th>
-                    <th scope="col">Merk</th>
                     <th scope="col">No. Kendaraan</th>
+                    <th scope="col">Merk</th>
                     <th scope="col">Rute</th>
                     <th scope="col">Kapasitas</th>
                     <th scope="col">Waktu berangkat</th>
@@ -120,15 +124,15 @@
 
                   <?php 
                   $no = 1;
-                  while($res = mysqli_fetch_array($data_angkutan)) { ?>
+                  while($res = mysqli_fetch_array($data_angkutan_rute)) { ?>
                   <tr>
                     <th scope="row"><?php echo $no ?></th>
                     <td><?php echo $res["nama_angkutan"] ?></td>
                     <td><?php echo $res["no_kendaraan"] ?></td>
                     <td><?php echo $res["merk"] ?></td>
-                    <td><?php echo $res["rute"] ?></td>
+                    <td><?php echo $res["asal"] . " - " . $res["tujuan"] ?></td>
                     <td><?php echo $res["kapasitas"]?> Penumpang</td>
-                    <td><?php echo $res["waktu_berangkat"] ?></td>
+                    <td><?php echo $res["tanggal_berangkat"] ?></td>
                   </tr>
                   <?php $no++;} ?>
                 </tbody>

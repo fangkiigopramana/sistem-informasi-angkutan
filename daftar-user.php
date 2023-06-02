@@ -26,7 +26,7 @@
       <h1>Daftar Admin</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.php">Dashboard</a></li>
+          <li class="breadcrumb-item"><a href="dashboard.php">Dashboard</a></li>
           <li class="breadcrumb-item">Daftar Admin</li>
         </ol>
       </nav>
@@ -40,8 +40,7 @@
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Berikut ini daftar angkutan yang tersedia :</h5> 
-              <!-- <button type="button" class="btn btn-primary">Primary</button> -->
-              <!-- <button type="button" class="btn btn-primary">Primary</button>  -->
+
               <!-- Modal Dialog Scrollable -->
               <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalDialogScrollable">
                 Tambah data
@@ -50,8 +49,7 @@
                 <div class="modal-dialog modal-dialog-scrollable">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title">Form tambah data angkutan</h5>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      <h5 class="modal-title">Form tambah data admin</h5>
                     </div>
                     <div class="modal-body">
                       <div class="col-lg-12">
@@ -60,27 +58,24 @@
                           <div class="card-body">
                             
                             <!-- Vertical Form -->
-                            <form class="row g-3">
+                            <form class="row g-3" method="post" action="kelola/admin/add.php">
                               <div class="col-12">
-                                <label for="inputNanme4" class="form-label">Your Name</label>
-                                <input type="text" class="form-control" id="inputNanme4">
+                                <label for="nama" class="form-label">Nama</label>
+                                <input type="text" class="form-control" name="nama">
                               </div>
                               <div class="col-12">
-                                <label for="inputEmail4" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="inputEmail4">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" name="email">
                               </div>
                               <div class="col-12">
-                                <label for="inputPassword4" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="inputPassword4">
-                              </div>
-                              <div class="col-12">
-                                <label for="inputAddress" class="form-label">Address</label>
-                                <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                                <label for="sandi" class="form-label">Password</label>
+                                <input type="password" class="form-control" name="sandi">
                               </div>
                               <div class="text-left">
-                                <button type="submit" class="btn btn-success">Submit</button>
+                                <button type="submit" name="send" class="btn btn-success">Submit</button>
                               </div>
-                            </form><!-- Vertical Form -->
+                            </form>
+                            <!-- Vertical Form -->
 
                           </div>
                         </div>
@@ -113,7 +108,7 @@
                     <th scope="row"><?php echo $no ?></th>
                     <td><?php echo $res["nama"] ?></td>
                     <td><?php echo $res["email"] ?></td>
-                    <td><?php echo $res["password"] ?></td>
+                    <td><?php echo $res["sandi"] ?></td>
                   </tr>
                   <?php $no++; }?>
                 </tbody>

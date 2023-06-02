@@ -1,18 +1,17 @@
 <?php
 	//including the database connection file
-	include_once("config.php");
+	include_once("../database/config.php");
 	
 	if(isset($_POST['login'])) {	
-    $username = mysqli_real_escape_string($mysqli, $_POST['username']);
-		$password = mysqli_real_escape_string($mysqli, $_POST['password']);
-    $query_sql = "SELECT * FROM admin WHERE username = '$username' AND password = '$password'";
+    $email = mysqli_real_escape_string($mysqli, $_POST['email']);
+		$password = mysqli_real_escape_string($mysqli, $_POST['sandi']);
+    $query_sql = "SELECT * FROM admin_tb WHERE email = '$email' AND sandi = '$password'";
     $result = mysqli_query($mysqli, $query_sql);
 
     if(mysqli_num_rows($result) > 0){
-        echo "<h1>Selamat Datang, ".$username."!</h1>";
-        header("Location: admin.php");	
+        header("Location: http://localhost/sistem-informasi-angkutan/dashboard.php");	
     }else{
-        header("Location: login.php");
+        header("Location: http://localhost/sistem-informasi-angkutan");
     }
   }
   ?>
