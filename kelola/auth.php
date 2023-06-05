@@ -11,7 +11,7 @@
     if(mysqli_num_rows($result) > 0){
         header("Location: http://localhost/sistem-informasi-angkutan/dashboard.php");	
     }else{
-        header("Location: http://localhost/sistem-informasi-angkutan");
+        header("Location: http://localhost/sistem-informasi-angkutan/login.php");
     }
   }
   ?>
