@@ -61,11 +61,23 @@
                             <form class="row g-3" method="post" action="kelola/rute/add.php">
                               <div class="col-12">
                                 <label for="asal" class="form-label">Asal</label>
-                                <input type="text" class="form-control" name="asal">
+                                <select class="form-select" name="asal" aria-label="Default select example" required>
+                                  <option value="Terminal Bekasi">Terminal Bekasi</option>
+                                  <option value="Terminal Pulogebang">Terminal Pulogebang</option>
+                                  <option value="Terminal Poris Plawad">Terminal Poris Plawad</option>
+                                  <option value="Terminal Jatijajar">Terminal Jatijajar</option>
+                                  <option value="Terminal Baranangsiang">Terminal Baranangsiang</option>
+                                </select>
                               </div>
                               <div class="col-12">
                                 <label for="tujuan" class="form-label">Tujuan</label>
-                                <input type="text" class="form-control" name="tujuan">
+                                <select class="form-select" name="tujuan" aria-label="Default select example" required>
+                                  <option value="Terminal Bekasi">Terminal Bekasi</option>
+                                  <option value="Terminal Pulogebang">Terminal Pulogebang</option>
+                                  <option value="Terminal Poris Plawad">Terminal Poris Plawad</option>
+                                  <option value="Terminal Jatijajar">Terminal Jatijajar</option>
+                                  <option value="Terminal Baranangsiang">Terminal Baranangsiang</option>
+                                </select>
                               </div>
                               <div class="col-12">
                                 <label for="jarak_tempuh" class="form-label">Jarak Tempuh</label>

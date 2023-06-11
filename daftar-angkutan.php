@@ -39,8 +39,6 @@
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Berikut ini daftar angkutan yang tersedia :</h5> 
-              <!-- <button type="button" class="btn btn-primary">Primary</button> -->
-              <!-- <button type="button" class="btn btn-primary">Primary</button>  -->
               <!-- Modal Dialog Scrollable -->
               <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalDialogScrollable">
                 Tambah data
@@ -89,6 +87,18 @@
                                 <label for="tanggal_berangkat" class="form-label">Tanggal berangkat</label>
                                 <input type="date" class="form-control" name="tanggal_berangkat" required>
                               </div>
+                              <div class="col-12">
+                                <label for="tanggal_berangkat" class="form-label">Jam berangkat</label>
+                                <input type="time" class="form-control" name="jam_berangkat" required>
+                              </div>
+                              <div class="col-12">
+                                <label for="jam_tiba" class="form-label">Jam tiba</label>
+                                <input type="time" class="form-control" name="jam_tiba" required>
+                              </div>
+                              <div class="col-12">
+                                <label for="harga_tiket" class="form-label">Harga tiket</label>
+                                <input type="number" class="form-control" name="harga_tiket" required>
+                              </div>
                               <div class="text-left">
                                 <button type="submit" name="send" class="btn btn-success">Submit</button>
                               </div>
@@ -112,12 +122,16 @@
                 <thead>
                   <tr>
                     <th scope="col">No</th>
-                    <th scope="col">Nama Angkutan</th>
-                    <th scope="col">No. Kendaraan</th>
+                    <th scope="col">Nama angkutan</th>
+                    <th scope="col">No. kendaraan</th>
                     <th scope="col">Merk</th>
                     <th scope="col">Rute</th>
                     <th scope="col">Kapasitas</th>
-                    <th scope="col">Waktu berangkat</th>
+                    <th scope="col">Tanggal</th>
+                    <th scope="col">Berangkat</th>
+                    <th scope="col">Tiba</th>
+                    <th scope="col">Tiket</th>
+                    <th scope="col">Action</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -132,7 +146,13 @@
                     <td><?php echo $res["merk"] ?></td>
                     <td><?php echo $res["asal"] . " - " . $res["tujuan"] ?></td>
                     <td><?php echo $res["kapasitas"]?> Penumpang</td>
-                    <td><?php echo $res["tanggal_berangkat"] ?></td>
+                    <td><?php echo $res["tanggal_berangkat"]?></td>
+                    <td><?php echo date("H:i", strtotime($res["jam_berangkat"]))  ?></td>
+                    <td><?php echo date("H:i", strtotime($res["jam_tiba"]))  ?></td>
+                    <td><?php echo "Rp " . $res["harga_tiket"] ?></td>
+                    <td>
+                      <a href=<?php echo "kelola/angkutan/delete.php?id_angkutan=" . $res["id_angkutan"]?> onclick="Konfirmasi" class="text-decoration-none text-danger fw-bold">Hapus</a></td>
+                    </td>
                   </tr>
                   <?php $no++;} ?>
                 </tbody>
@@ -166,6 +186,12 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+
+  <script>
+    function Konfirmasi (){
+      return confirm('Ups, Yakin Data Mau dihapus?');
+    }
+  </script>
 
 </body>
 

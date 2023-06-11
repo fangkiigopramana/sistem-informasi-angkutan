@@ -29,7 +29,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="login.php">
+              <a class="dropdown-item d-flex align-items-center" href="index.php">
                 <i class="bi bi-box-arrow-right"></i>
                 <span>Sign Out</span>
               </a>

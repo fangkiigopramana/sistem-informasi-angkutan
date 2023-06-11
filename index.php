@@ -34,6 +34,9 @@
 
     <!-- Template Stylesheet -->
     <link href="assets/css/style-1.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </head>
 
 <body>
@@ -179,9 +182,12 @@
                 <div class="text-center wow fadeInUp mb-5" data-wow-delay="0.1s">
                     <h3 class="section-title text-center text-primary text-uppercase">Daftar Rute</h3>
                 </div>
+                <div style="display: flex; justify-content: center; align-items: center;">
+                    <img src="assets/img/route.png" alt="" width="500px" height="500px">
+                </div>
+
                 <div class="owl-carousel testimonial-carousel py-5">
-                    <?php 
-                    while($res = mysqli_fetch_array($data_rute)) { ?>
+                    <?php while($res = mysqli_fetch_array($data_rute)) { ?>
                     <div class="testimonial-item position-relative bg-white rounded overflow-hidden">
                         <div class="d-flex align-items-center">
                             <div class="">
@@ -200,64 +206,44 @@
 
 
         <!-- Daftar Angkutan Start -->
-        <div class="container-xxl py-5 mb-5" id="daftar-angkutan">
+        <div class="container-xxl py-5" id="daftar-terminal">
             <div class="container">
                 <div class="text-center wow fadeInUp mb-5" data-wow-delay="0.1s">
                     <h3 class="section-title text-center text-primary text-uppercase">Daftar Angkutan</h3>
                 </div>
                 <div class="row g-4">
-
-                    <!-- <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="rounded shadow overflow-hidden">
-                            <div class="position-relative">
-                                <img class="img-fluid" src="assets/img/team-1.jpg" alt="">
-                                <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
-                                    <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                    <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                    <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-instagram"></i></a>
-                                </div>
-                            </div>
-                            <div class="text-center p-4 mt-3">
-                                <h5 class="fw-bold mb-0">Full Name</h5>
-                                <small>Designation</small>
-                            </div>
-                        </div>
-                    </div> -->
                     <?php while($res = mysqli_fetch_array($data_angkutan_rute)) { ?>
 
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="rounded shadow overflow-hidden">
-                            <div class="position-relative">
-                                <img class="img-fluid" src="https://1.bp.blogspot.com/-rjOIwrAaNt8/XPuNiquyPeI/AAAAAAAAFMo/6Xa8eK9VHvc0C7ydIQjGNcSuHr_fIyrWgCLcBGAs/s1600/Bus.jpg" alt="">
-                            </div>
-                            <div class="text-left p-4 mt-3">
-                                <h5 class="fw-bold mb-0 text-center mb-3"><?php echo $res["nama_angkutan"] ?></h5>
-                                <p>No.Kendaraan : <?php echo $res["no_kendaraan"] ?></p>
-                                <p>Merk : <?php echo $res["merk"] ?></p>
-                                <p>Tanggal Berangkat : <?php echo $res["tanggal_berangkat"] ?></p>
-                                <p>Rute : <?php echo $res["asal"] . $res["tujuan"] ?></p>
-                            </div>
-                        </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" style="border-radius: 30px;" data-wow-delay="0.1s">
+                        <a class="service-item rounded text-decoration-none" style="border-radius: 30px; background-color: #6d99e0;" href="#">
+                            <img class="img-fluid rounded wow zoomIn" data-wow-delay="0.3s" width="300px" src=<?php echo "assets/img/bus/". rand(1,6) . ".svg" ?>>
+                            <h5 class="mb-1 text-decoration-underline"><?php echo $res["nama_angkutan"] ?></h5>
+                            <p class="mb-1 fw-bold" style="text-align: left; color: black"><?php echo "Rp " . $res["harga_tiket"] ?></p>
+                            <p class="mb-1 fw-bold" style="text-align: left; color: black"><?php echo $res["tanggal_berangkat"] ?><br><?php echo date("H:i", strtotime($res["jam_berangkat"])) . ' - '. date("H:i", strtotime($res["jam_tiba"])) . ' @' . $res["durasi"] . ' Menit' ?></p>
+                            <p class="mb-1 fw-bold" style="text-align: left; color: black"><?php echo $res["asal"] . " - " . $res["tujuan"] ?></p>
+                        </a>
                     </div>
-                    <?php }?>
+                        <?php }?>
+
 
                 </div>
             </div>
         </div>
         <!-- Daftar Angkutan End -->
 
-
-        
-
         <!-- Footer Start -->
-        <div class="container-fluid bg-dark text-light footer wow fadeIn" data-wow-delay="0.1s">
-            <div class="container">
-                <div class="copyright">
-                    <div class="row text-center">
-                            &copy; Sistem Informasi Angkutan. 
-                    </div>
-                </div>
-            </div>
+        <div style="background-color: black; padding: 20px 0px">
+            <footer class="container d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+                <p class="col-md-4 mb-0 text-white fw-bold">&copy; 2023 Company, Inc</p>
+
+                <ul class="nav col-md-8 justify-content-end">
+                    <li class="nav-item"><a href="#beranda" class="nav-link px-2 text-body-secondary">Beranda</a></li>
+                    <li class="nav-item"><a href="#tentang-kami" class="nav-link px-2 text-body-secondary">Tentang Kami</a></li>
+                    <li class="nav-item"><a href="#daftar-terminal" class="nav-link px-2 text-body-secondary">Daftar Terminal</a></li>
+                    <li class="nav-item"><a href="#daftar-rute" class="nav-link px-2 text-body-secondary">Daftar Rute</a></li>
+                    <li class="nav-item"><a href="#daftar-angkutan" class="nav-link px-2 text-body-secondary">Daftar Angkutan</a></li>
+                </ul>
+            </footer>
         </div>
         <!-- Footer End -->
 
