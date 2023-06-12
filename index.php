@@ -180,25 +180,32 @@
         <div class="container-xxl testimonial my-5 py-5 bg-dark wow zoomIn" data-wow-delay="0.1s" id="daftar-rute">
             <div class="container">
                 <div class="text-center wow fadeInUp mb-5" data-wow-delay="0.1s">
-                    <h3 class="section-title text-center text-primary text-uppercase">Daftar Rute</h3>
+                    <h3 class="section-title text-center text-primary text-uppercase">Peta Rute</h3>
                 </div>
                 <div style="display: flex; justify-content: center; align-items: center;">
                     <img src="assets/img/route.png" alt="" width="500px" height="500px">
                 </div>
+                <div class="text-center wow fadeInUp mb-5" data-wow-delay="0.1s">
+                    <h3 class="section-title text-center text-primary text-uppercase mt-5">Daftar Rute</h3>
+                </div>
+                <div class="mt-3">
+                    <table class="table table-bordered border-light">
+                        <thead>
+                            <tr class="fw-bold text-center" style="color: white;">
+                                <th scope="col">Rute</th>
+                                <th scope="col">Keberangkatan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php while($res = mysqli_fetch_array($data_rute)) { ?>
+                            <tr style="color: white;">
+                                <td><?php echo $res["asal"] . " - " . $res["tujuan"] ?></td>
+                                <td><?php echo $res["jam_berangkat"] . " - " . $res["jam_tiba"] . "  @" . $res["durasi"] . " Menit" ?></td>
+                            </tr>
+                        <?php }?>
 
-                <div class="owl-carousel testimonial-carousel py-5">
-                    <?php while($res = mysqli_fetch_array($data_rute)) { ?>
-                    <div class="testimonial-item position-relative bg-white rounded overflow-hidden">
-                        <div class="d-flex align-items-center">
-                            <div class="">
-                                <h6 class="fw-bold mb-1">Rute <?php echo $res["asal"] . " - " . $res["tujuan"] ?> Bandung</h6>
-                                <small class="fw-bold">Jarak Tempuh : <?php echo $res["jarak_tempuh"] ?> KM</small>
-                            </div>
-                        </div>
-                        <p>Rute <?php echo $res["asal"] . " - " . $res["tujuan"] ?> adalah jalur transportasi yang menghubungkan <?php echo $res["asal"]?> dengan <?php echo $res["tujuan"] ?>. Perjalanan ini menawarkan pemandangan indah sepanjang jalan, dengan berbagai opsi transportasi seperti kereta api, bus, atau mobil pribadi.</p>
-                        <i class="fa fa-quote-right fa-3x text-primary position-absolute end-0 bottom-0 me-4 mb-n1"></i>
-                    </div>
-                    <?php }?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
