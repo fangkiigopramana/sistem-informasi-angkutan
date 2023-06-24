@@ -1,5 +1,5 @@
-<?php 
-    include_once 'database/config.php'
+<?php
+include_once 'database/config.php'
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +18,7 @@
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">  
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -36,6 +36,7 @@
     <link href="assets/css/style-1.css" rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" />
 
 </head>
 
@@ -70,7 +71,7 @@
 
         <!-- Carousel Start -->
         <div class="container-fluid p-0 mb-5" id="beranda">
-            <div id="header-carousel" class="carousel slide" data-bs-ride="carousel" >
+            <div id="header-carousel" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <img class="w-100" src="https://1.bp.blogspot.com/-Bczco2YuSAM/XPO11WHXpoI/AAAAAAAAol8/7gaVch-LxkY9dTD4FfvGHwELU-BwMj4zQCLcBGAs/s1600/maxresdefault.jpg" alt="Image">
@@ -94,13 +95,11 @@
                         </div>
                     </div>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel"
-                    data-bs-slide="prev">
+                <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
                 </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#header-carousel"
-                    data-bs-slide="next">
+                <button class="carousel-control-next" type="button" data-bs-target="#header-carousel" data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </button>
@@ -177,7 +176,7 @@
 
 
         <!-- Daftar Rute Start -->
-        <div class="container-xxl testimonial my-5 py-5 bg-dark wow zoomIn" data-wow-delay="0.1s" id="daftar-rute">
+        <div class="container-xxl my-5 py-5 bg-dark wow zoomIn" data-wow-delay="0.1s" id="daftar-rute">
             <div class="container">
                 <div class="text-center wow fadeInUp mb-5" data-wow-delay="0.1s">
                     <h3 class="section-title text-center text-primary text-uppercase">Peta Rute</h3>
@@ -189,21 +188,20 @@
                     <h3 class="section-title text-center text-primary text-uppercase mt-5">Daftar Rute</h3>
                 </div>
                 <div class="mt-3">
-                    <table class="table table-bordered border-light">
+                    <table id="myTable" class="display" style="color: white;">
                         <thead>
-                            <tr class="fw-bold text-center" style="color: white;">
-                                <th scope="col">Rute</th>
-                                <th scope="col">Keberangkatan</th>
+                            <tr>
+                                <th>Tujuan</th>
+                                <th>Waktu Perjalanan</th>
                             </tr>
                         </thead>
                         <tbody>
-                        <?php while($res = mysqli_fetch_array($data_rute)) { ?>
-                            <tr style="color: white;">
-                                <td><?php echo $res["asal"] . " - " . $res["tujuan"] ?></td>
-                                <td><?php echo $res["jam_berangkat"] . " - " . $res["jam_tiba"] . "  @" . $res["durasi"] . " Menit" ?></td>
-                            </tr>
-                        <?php }?>
-
+                            <?php while ($res = mysqli_fetch_array($data_rute)) { ?>
+                                <tr>
+                                    <td><?php echo $res["asal"] . " - " . $res["tujuan"] ?></td>
+                                    <td><?php echo $res["jam_berangkat"] . " - " . $res["jam_tiba"] . "  @" . $res["durasi"] . " Menit" ?></td>
+                                </tr>
+                            <?php } ?>
                         </tbody>
                     </table>
                 </div>
@@ -218,22 +216,29 @@
                 <div class="text-center wow fadeInUp mb-5" data-wow-delay="0.1s">
                     <h3 class="section-title text-center text-primary text-uppercase">Daftar Angkutan</h3>
                 </div>
-                <div class="row g-4">
-                    <?php while($res = mysqli_fetch_array($data_angkutan_rute)) { ?>
-
-                    <div class="col-lg-4 col-md-6 wow fadeInUp" style="border-radius: 30px;" data-wow-delay="0.1s">
-                        <a class="service-item rounded text-decoration-none" style="border-radius: 30px; background-color: #6d99e0;" href="#">
-                            <img class="img-fluid rounded wow zoomIn" data-wow-delay="0.3s" width="300px" src=<?php echo "assets/img/bus/". rand(1,6) . ".svg" ?>>
-                            <h5 class="mb-1 text-decoration-underline"><?php echo $res["nama_angkutan"] ?></h5>
-                            <p class="mb-1 fw-bold" style="text-align: left; color: black"><?php echo "Rp " . $res["harga_tiket"] ?></p>
-                            <p class="mb-1 fw-bold" style="text-align: left; color: black"><?php echo $res["tanggal_berangkat"] ?><br><?php echo date("H:i", strtotime($res["jam_berangkat"])) . ' - '. date("H:i", strtotime($res["jam_tiba"])) . ' @' . $res["durasi"] . ' Menit' ?></p>
-                            <p class="mb-1 fw-bold" style="text-align: left; color: black"><?php echo $res["asal"] . " - " . $res["tujuan"] ?></p>
-                        </a>
-                    </div>
-                        <?php }?>
-
-
+                <p>Pencarian</p>
+                <div class="input-group py-3 mt-1 flex-nowrap" data-aos-duration="1200">
+                    <span class="input-group-text" id="addon-wrapping"><i class="bi bi-search"></i></span>
+                    <input type="text" id="searchText" name="searchText" class="form-control me-lg-2 text-secondary" placeholder="Ketik nama angkutan atau jurusan perjalanan yang ingin dicari..." onkeyup="searchFilter()" style="font-family: serif">
                 </div>
+                <div class="notification" style="display: none;">
+                    <p class="notification-text text-center text danger" style="color: red;"></p>
+                </div>
+
+                <div class="row g-4" id="angkutanCards">
+                    <?php while ($res = mysqli_fetch_array($data_angkutan_rute)) { ?>
+                        <div class="col-lg-4 col-md-6 wow fadeInUp angkutan_card" style="border-radius: 30px;" data-wow-delay="0.1s">
+                            <a class="service-item rounded text-decoration-none" style="border-radius: 30px; background-color: #6d99e0;" href="#">
+                                <img class="img-fluid rounded wow zoomIn" data-wow-delay="0.3s" width="300px" src=<?php echo "assets/img/bus/" . rand(1, 6) . ".svg" ?>>
+                                <h5 class="mb-1 text-decoration-underline nama_angkutan"><?php echo $res["nama_angkutan"] ?></h5>
+                                <p class="mb-1 fw-bold" style="text-align: left; color: black"><?php echo "Rp " . $res["harga_tiket"] ?></p>
+                                <p class="mb-1 fw-bold" style="text-align: left; color: black"><?php echo $res["tanggal_berangkat"] ?><br><?php echo date("H:i", strtotime($res["jam_berangkat"])) . ' - ' . date("H:i", strtotime($res["jam_tiba"])) . ' @' . $res["durasi"] . ' Menit' ?></p>
+                                <p class="mb-1 fw-bold jurusan" style="text-align: left; color: black"><?php echo $res["asal"] . " - " . $res["tujuan"] ?></p>
+                            </a>
+                        </div>
+                    <?php } ?>
+                </div>
+
             </div>
         </div>
         <!-- Daftar Angkutan End -->
@@ -262,6 +267,7 @@
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script src="assets/lib/wow/wow.min.js"></script>
     <script src="assets/lib/easing/easing.min.js"></script>
     <script src="assets/lib/waypoints/waypoints.min.js"></script>
@@ -273,6 +279,42 @@
 
     <!-- Template Javascript -->
     <script src="assets/js/main-1.js"></script>
+    <script>
+        function searchFilter() {
+            let input, filter, title, jurusan;
+            let i = 0;
+            input = document.getElementById("searchText");
+            filter = input.value.toUpperCase();
+            const cards = document.querySelectorAll(".angkutan_card");
+
+            cards.forEach(card => {
+                title = card.querySelector(".nama_angkutan");
+                jurusan = card.querySelector(".jurusan");
+                if (title.innerText.toUpperCase().indexOf(filter) > -1 || jurusan.innerText.toUpperCase().indexOf(filter) > -1) {
+                    card.style.display = "";
+                    i++;
+                } else {
+                    card.style.display = "none";
+                }
+            });
+
+            if (i === 0) {
+                // Tampilkan pesan jika tidak ada hasil yang cocok
+                document.getElementById("angkutanCards").style.display = "none";
+                document.querySelector('.notification').style.display = 'block';
+                document.querySelector('.notification-text').textContent = "Pencarian tidak ditemukan !!";
+            } else {
+                document.getElementById("angkutanCards").style.display = "";
+                document.querySelector('.notification').style.display = 'none';
+            }
+        }
+    </script>
+    <!-- <script src="assets/js/angkutan_filter.js"></script> -->
+    <script>
+        $(document).ready(function() {
+            $('#myTable').DataTable();
+        });
+    </script>
 </body>
 
 </html>
